@@ -1,0 +1,128 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+
+<link rel="stylesheet" type="text/css" href="questionnaire-148920.appspot.com_files/bootstrap.min.css">
+<script src="questionnaire-148920.appspot.com_files/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+
+<div class="row">
+<div class="col-md-12">
+<h1>Phillies Baseball R&amp;D Questionnaire</h1>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12" style="margin-top:10px">
+<p>
+Congratulations on your selection as a semi-finalist to join the 
+Phillies Baseball R&amp;D team!  As a means to learn more about each 
+candidate, we request that you complete this questionnaire to the best 
+of your ability within 96 hours (4 days) of your receipt. 
+</p>
+
+<p>
+This questionnaire contains two questions. Thank you for taking the time to participate in our application process. Good luck!
+</p>
+
+
+<ol type="a">
+    <li>
+        <p> Write a project proposal for the following. Use the example posted <a href="https://questionnaire-148920.appspot.com/qas/example.pdf">here</a> as a reference for the format and level of detail we expect.</p>
+
+        <p>Imagine that the Major League outfield coach approaches you 
+with the following question: “One of our outfielders, Player X, seems to
+ be struggling in the field. He’s got a great arm, but he’s made a few 
+errors this season and is failing to get to some balls. Could you look 
+into this and identify any problem areas that we can target with 
+drills?”</p>
+        <ul>
+            <li>Assume you have access to any data that could be 
+relevant, such as batted ball exit data (exit velocity, launch angle, 
+etc.), fielder movement data (first step, speed, exchange time, etc.), 
+and anything else you are considering for all balls that could be 
+fielded by an outfielder.</li>
+            <li>Outline the possible approaches, data to be leveraged, 
+and proposed methodology. Be sure to mention any shortcomings to the 
+approaches and proposal, in addition to any data issues you could 
+foresee. Although an analysis section is included in the example above, 
+do not complete this section.</li>
+            <li>Include any resources you used to formulate or motivate your proposal.</li>
+            <li>Your submission will be graded on the soundness and clarity of your proposal.</li>
+        </ul>
+
+    </li>
+
+    <li>
+    <p>
+    The file obp.csv provided at <a href="https://questionnaire-148920.appspot.com/qas/obp.csv">https://questionnaire-148920.appspot.com/qas/obp.csv</a> contains 15 columns:
+        </p><ul>
+            <li>Name - player’s name</li>
+            <li>playerid - player’s Fangraphs ID</li>
+            <li>birth_date - player’s date of birth</li>
+            <li>PA_21 - player’s plate appearances in 2021</li>
+            <li>OBP_21 - player’s on-base percentage in 2021</li>
+            <li>PA_20 - player’s plate appearances in 2020</li>
+            <li>OBP_20 - player’s on-base percentage in 2020</li>
+            <li>PA_19 - player’s plate appearances in 2019</li>
+            <li>OBP_19 - player’s on-base percentage in 2019</li>
+            <li>PA_18 - player’s plate appearances in 2018</li>
+            <li>OBP_18 - player’s on-base percentage in 2018</li>
+            <li>PA_17 - player’s plate appearances in 2017</li>
+            <li>OBP_17 - player’s on-base percentage in 2017</li>
+            <li>PA_16 - player’s plate appearances in 2016</li>
+            <li>OBP_16 - player’s on-base percentage in 2016</li>
+        </ul>
+    <p></p>
+        <p style="margin: 14px 0px">
+        Predict each player’s on-base percentage in the 2021 season 
+given his plate appearances and on-base percentages in prior seasons.
+            </p><ul>
+                <li>Your submission will be judged primarily on the 
+clarity with which you describe your methodology and present your 
+findings and secondarily on the accuracy of your predictions.</li>
+                <li>You are <b>definitely not</b> required to do so, but
+ if you wish, you are welcome to research and incorporate more data than
+ what is provided in the obp.csv file for your predictions. However, you
+ may not include any data from Opening Day for the 2021 regular season 
+onward. For example, you may include each player’s exit velocity in 
+prior seasons if you can find that data and think it will help your 
+prediction, but you cannot include each player’s 2021 exit velocity. 
+Data in obp.csv came from fangraphs.com.</li>
+                <li>Feel free to use any approach, programming language, or software you prefer.</li>
+                <li>Feel free to use any mechanism(s) to present your 
+results (email, LaTex, R Markdown, Jupyter notebook, Powerpoint, etc.) 
+so long as you describe your methodology, include any code, and provide a
+ measurement of the accuracy of your predictions. Your analysis should 
+be completely reproducible.</li>
+                <li>Using online resources such as Stack Overflow is 
+encouraged! Just please include a citation (by including a comment in 
+your code with a link to the resource).</li>
+            </ul>
+        <p></p>
+    </li>
+</ol>
+</div>
+</div>
+</div>
+<br>
+
+<script>mendeleyWebImporter = {
+  downloadPdfs(e,t) { return this._call('downloadPdfs', [e,t]); },
+  open() { return this._call('open', []); },
+  setLoginToken(e) { return this._call('setLoginToken', [e]); },
+  _call(methodName, methodArgs) {
+    const id = Math.random();
+    window.postMessage({ id, token: '0.3926102881569119', methodName, methodArgs }, 'https://questionnaire-148920.appspot.com');
+    return new Promise(resolve => {
+      const listener = window.addEventListener('message', event => {
+        const data = event.data;
+        if (typeof data !== 'object' || !('result' in data) || data.id !== id) return;
+        window.removeEventListener('message', listener);
+        resolve(data.result);
+      });
+    });
+  }
+};</script></body></html>
