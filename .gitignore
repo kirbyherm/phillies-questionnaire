@@ -1,0 +1,8 @@
+compile.sh
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.log
+*.pdf
+*.toc
