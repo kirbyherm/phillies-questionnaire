@@ -69,9 +69,8 @@
 \title{	
 \normalfont \normalsize 
 \textsc{Michigan State University} \\ [25pt] % Your university, school and/or department name(s)
-\textsc{Statistics and Data Analysis - PHY950} \\ [23pt]
 \horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
-\huge Homework 5 \\ % The assignment title
+\huge Philadelphia Phillies R \& D Questionnaire \\ % The assignment title
 \horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
 }
 
@@ -87,168 +86,69 @@
 %	PROBLEM 1
 %----------------------------------------------------------------------------------------
 
-
-First thing to consider is to confirm that the player knows where he should be throwing the ball under every situation. If he is hesitating or unsure where the throw should go, that doubt may already be enough to cause the throw to miss the mark.
-
-
-
 \numberwithin{equation}{subsection}
-\section{Experimental Measurements and Fisher Information Matrices}
-The relevant code for this section is found in p1.py.
 
-\begin{align}
-\begin{split}
-\mathcal{I}_{ij} = \mathbb{E}\left[\sum_{m=1}^N \frac{n_m}{\sigma_m^2} \frac{\partial f_m}{\partial \theta_i}  \frac{\partial f_m}{\partial \theta_j}\right]
-\end{split}
-\end{align}
+\section{Outfielder Proposal}
 
-and the three equations
+The issue at the heart of this question is unknown. Given the outfield coach's report, Player X could have any number of issues with his performance, which may or may not be treatable with drills or targeted research. Having said this, there are several potential problems to troubleshoot and help us and other members of the organization better understand the situation. Here, I will lay out my proposed troubleshooting methodology, as well as the indicative data and potential solutions. Simplified results are shown in Tab. \ref{tab:of}
 
-\begin{align}
-\begin{split}
-f_1(\sqrt{s_1}) = \alpha \sqrt{s_1} + \beta
-\\f_2(\sqrt{s_2}) = \alpha \sqrt{s_2} + \beta
-\\f_3(\sqrt{s_3}) = \alpha \sqrt{s_3} + \beta
-\end{split}
-\end{align}
+\subsection{Arm Evaluation}
 
-we can iterate over all possible experimental configurations $n = [n_1, n_2, n_3]$ subject to our financial constraint
+As the coach specifically mentions how good Player X's arm is, I get the feeling that both his accuracy and arm strength are not major issues but they are still worth addressing.
 
-\begin{align}
-\begin{split}
-\sum_{i=1}^3 c_i n_i \leq 10
-\end{split}
-\end{align}
+\subsubsection{Accuracy}
 
-where $c = [1,2,3]$ is the cost per measurement at each CoM energy. Additionally, the experiment must be run at least once at two different energies in order to obtain estimates for both $\alpha$ and $\beta$. And lastly, running at $\sqrt{s_3} = 5 \textrm{GeV}$ requires at least one run at each of the other two energies first.
+First thing to consider is to confirm that the player knows where he should be throwing the ball under every situation. If he is hesitating or unsure where the throw should go, that doubt may already be enough to cause the throw to miss the mark. This can be evaluated by seeing if there is any consistency to the types of plays or the particular target on the field when Player X has made a throwing error (it also would be worth it for the outfield coach to quiz Player X on a few situations to be sure). 
 
-Considering all these constraints, and iterating over all remaining possibilities, yields the following minimum variances (calculated by inverting the Fisher Matrix) for $\alpha$ and $\beta$
+Possible remedies include studying the situational aspect and practicing making the target throws.
 
-\begin{align}
-\begin{split}
-\sigma_\alpha^2 = 0.1962 \quad n = [2, 1, 2] 
-\\ V_\alpha = \left[\begin{matrix}
-0.1962 & -0.3793
-\\-0.3793 & 1.1785
-\end{matrix}\right]
-\end{split}
-\end{align}
+\subsubsection{Arm Strength}
 
-\begin{align}
-\begin{split}
-\sigma_\beta^2 = 0.7521 \quad n = [5, 1, 1] 
-\\ V_\beta = \left[\begin{matrix}
-0.2978 & -0.3895
-\\-0.3895 & 0.7521
-\end{matrix}\right]
-\end{split}
-\end{align}
+Since the two concerns the coach highlights are ``errors'' and ``failing to get to some balls'' I suspect that arm strength is not a major concern for Player X. However, it is worth it to quickly confirm that he is not ``overthrowing'' on throws. Here it would be useful to check 
 
-\subsection{Incorporation of Prior Results}
+\subsection{Fielding Evaluation}
 
-\begin{align}
-\begin{split}
-\tilde{\mathcal{I}}_{ij} = \mathbb{E}\left[\sum_{m=1}^N \frac{n_m}{\sigma_m^2} \frac{\partial f_m}{\partial \theta_i}  \frac{\partial f_m}{\partial \theta_j}\right] + \mathcal{I}_{prior}
-\end{split}
-\end{align}
+Given the coach's expressed concerns I would expect the main issue would be in Player X's performance fielding hit balls.
 
-where 
+\subsubsection{Fielding Positioning} \label{subsub:fieldpos}
 
-\begin{align}
-\begin{split}
-\mathcal{I}_{prior} = \left[ \begin{matrix}
-(0.1 \alpha)^{-2} & 0 \\ 0 & (0.2 \beta)^{-2}
-\end{matrix}\right]
-\end{split}
-\end{align}
-
-Using this $\tilde{\mathcal{I}}$ we can recalculate the variances for $\alpha, \beta$ and find the following
-
-\begin{align}
-\begin{split}
-\tilde{\sigma}_\alpha^2 = 0.0571 \quad n = [2, 1, 2] 
-\\ \tilde{V}_\alpha = \left[\begin{matrix}
-0.0571 & -0.0292
-\\-0.0292 & 0.1326
-\end{matrix}\right]
-\end{split}
-\end{align}
-
-\begin{align}
-\begin{split}
-\tilde{\sigma}_\beta^2 = 0.1088 \quad n = [8, 1, 0] 
-\\ \tilde{V}_\beta = \left[\begin{matrix}
-0.0981 & -0.0516
-\\-0.0516 & 0.1088
-\end{matrix}\right]
-\end{split}
-\end{align}
-
-And so we see that including the prior measurements does not change which method to use for estimating the slop, but does dramatically decrease the variance of those measurements. Additionally, including the prior measurements means that to estimate the intercept we can focus on just the measurement at the first energy ($n = [8,1,0]$ now) and dramatically reduce our variance on the intercept estimate.
+All hitters have a spray chart showing the outcomes of their at-bats \cite{baseballsavant}. It would be useful to compare that spray chart to the outfielder's original positioning for each case and calculate the difference. For the case of Player X, it may be that, when compared with the average of other fielders, he is actually being asked to cover greater distances to make plays, which may either be due to poor luck (in which case the discrepancy would go away under a larger sample size) or poor positioning by the coaches.  
 
 
 
-\begin{figure}
-%\includegraphics[scale=0.8]{src/alpha-beta.png}
-\caption{Effects of varying the theoretical values of $\alpha$ and $\beta$ on variances of the parameters}
-\end{figure}
+\subsubsection{Fielding Range} \label{subsub:fieldrange}
+
+As in Sec. \ref{subsub:fieldpos}, calculating the distance that Player X has to cover on his plays gives us an idea of his fielding range. Moreover, it is possible to highlight the plays where he is underperforming and dig deeper into what may have caused this. For instance, there may be plays where he failed to complete an out despite not having to cover as much ground. These likely will be cases where the launch angle and/or exit velocity off the bat is much more difficult to field quickly (a hard line drive) compared to a lazy fly ball. If there are in fact plays where he is not converting lazy fly balls into outs, these are incredibly important to identify and resolve. Regardless, his actions on either set of plays can give an insight into what may be causing his fielding issues.
+
+\subsubsection{Ballpark Features}
+
+Finally, all ballparks are inherently different, and this has particular impact on an outfielder's play. It is important to verify that this is not the case for Player X. In order to do so, I would compare the metrics disccussed in Sec \ref{subsub:fieldpos} and \ref{subsub:fieldrange} in his performance at home or away and see if there is a notable difference. If so, more practice with the features of that ballpark would be in order.
+
+\subsection{Results}
+
+The different metrics discussed in Sec \ref{sub:arm} and \ref{sub:field} are by no means an exhaustive list of the potential hazards which are hampering Player X's performance, but would provide a decent start at troubleshooting the problems. 
+
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+ \hline
+ Problem & Data to Diagnose & Solution \\ [0.5ex] 
+ \hline
+ \hline
+ Fielding Positioning & 
+ Fielding Range &
+ Ballpark Features &
+ Arm Accuracy & 
+ Arm Strength &
+
+ \hline
+\end{tabular}
+\end{center}
+\section{ OBP Predictor }
 
 
 
-\numberwithin{equation}{subsection}
-\section{Brownian Motion Experiment}
-
-The relevant code for this section is found in p2.py.
-
-\subsection{Determination of $\nu_0$, $k$ using Log-likelihood} \label{loglike}
-
-
-The calculated $\nu_0$, $k$ values which maximize the log-likelihood function are determined to be 
-
-
-\subsection{Determination of $N_A$ from $k$}
-
-Using the given formula and values for $R$, and incorporating our result from Sec \ref{loglike}, $N_A$ can be easily calculated yielding:
-
-\begin{align}
-\begin{split}
-{N}_{A, calc} = R/{k} = \num{6.941e+23}
-\end{split}
-\end{align}
-
-This is fairly close to the accepted value of $N_{A, act}=\num{6.022e23}$.
-
-\subsection{Determination of $\nu_0$, $k$ using $\chi^2$}
-
-Using the same methods as in Sec \ref{loglike}, but now using the given $\chi^2$ formula we approximate values of $\nu_0$, $k$ to be:
-\begin{align}
-\begin{split}
-\nu_0 = 1846 \quad k = \num{1.1992e-16}
-\end{split}
-\end{align}
-
-with a $\chi^2$ value 
-
-\begin{align}
-\begin{split}
-\chi^2_{min} = 4.5690
-\end{split}
-\end{align}
-
-See Fig \ref{chicontour} for the contour plot around this minimum.
-
-Using this $\chi^2_{min}$ value and the number of degrees of freedom, $\textrm{ndof} = n_{obs} -1 = 3$, we find the $p$-value from $1-\textrm{cdf}(\chi^2_{min}, \textrm{ndof})$
-
-\begin{align}
-\begin{split}
-p = 0.7938
-\end{split}
-\end{align}
-
-This tells us this is a good fit for the data, though the calculated value is not precisely the accepted value for $N_A$ or $k$.
-
-Regarding systematic errors in the experiment, I would hazard a guess that the fact that the liquid is held in suspension in a container of fixed size could affect the particles' Brownian motion in the container. Given that the particles are restricted to motion in a given box, even taking a small sample near the center (I assume), the particles may not exhibit the random motion required for Brownian motion due to the boundary conditions. This would then bias the measurements and would not allow for as accurate a determination of $k$ and $N_A$.
-
+\bibliographystyle{plain}
+\bibliography{refs}
 
 %----------------------------------------------------------------------------------------
 
